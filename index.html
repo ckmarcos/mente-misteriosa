@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Mente Misteriosa</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#ff4e8a,#6a5cff);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.container{
+background: rgba(0,0,0,0.3);
+padding:30px;
+border-radius:20px;
+max-width:500px;
+margin:auto;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+margin:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+.generate{
+background:#fff;
+color:#333;
+}
+
+.copy{
+background:#00e676;
+}
+
+.share{
+background:#2196f3;
+color:white;
+}
+
+#ad{
+margin-top:25px;
+background:white;
+color:black;
+padding:15px;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🔮 Leitor de Pensamentos</h1>
+
+<div class="container">
+
+<p>Descubra o que alguém pode estar pensando sobre você...</p>
+
+<input id="name1" placeholder="Seu nome"><br><br>
+<input id="name2" placeholder="Nome da pessoa"><br><br>
+
+<button class="generate" onclick="gerar()">Descobrir pensamento</button>
+
+<h2 id="resultado"></h2>
+
+<button class="copy" onclick="copiar()">📋 Copiar</button>
+<button class="share" onclick="compartilhar()">📤 Compartilhar</button>
+
+<div id="ad">
+Espaço para anúncio (Google AdSense)
+</div>
+
+</div>
+
+<script>
+
+const frases = [
+
+"{pessoa} pensa em você mais do que demonstra.",
+"{pessoa} tenta agir normal perto de você, mas sempre percebe quando você aparece.",
+"{pessoa} já imaginou como seria sair com você.",
+"{pessoa} sente algo por você, mas ainda está confuso.",
+"{pessoa} gosta quando você manda mensagem.",
+"{pessoa} repara em coisas que você nem imagina.",
+"{pessoa} já falou de você para amigos.",
+"{pessoa} fica curioso quando você demora para responder.",
+"{pessoa} tenta esconder que gosta da sua presença.",
+"{pessoa} lembra de momentos que passou com você."
+
+];
+
+function gerar(){
+
+let p = document.getElementById("name2").value;
+
+let frase = frases[Math.floor(Math.random()*frases.length)];
+
+frase = frase.replace("{pessoa}",p);
+
+document.getElementById("resultado").innerText = frase;
+
+}
+
+function copiar(){
+
+let texto = document.getElementById("resultado").innerText;
+
+navigator.clipboard.writeText(texto);
+
+alert("Copiado!");
+
+}
+
+function compartilhar(){
+
+let texto = document.getElementById("resultado").innerText;
+
+let url = "https://wa.me/?text="+encodeURIComponent(texto);
+
+window.open(url);
+
+}
+
+</script>
+
+</body>
+</html>
